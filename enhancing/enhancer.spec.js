@@ -25,7 +25,7 @@ const gameItems = [
     {
         name: "Dawn Earring",
         durability: 90,
-        enhancement: 15
+        enhancement: 18
     }
 ];
 
@@ -51,5 +51,35 @@ describe("Succeed", () => {
         } else {
             expect(result.enhancement).toBe(item.enhancement + 1);
         }
+    });
+});
+
+describe("Fail func", () => {
+    test("As expected", () => {
+        const item = gameItems[0];
+
+        const result = enhancer.fail(item);
+
+        const expectedResult = {
+            name: "Swiftwing Axe",
+            durability: 90,
+            enhancement: 19
+        };
+
+        expect(result).toEqual(expectedResult);
+    });
+
+    test("As expected 2", () => {
+        const item = gameItems[4];
+
+        const result = enhancer.fail(item);
+
+        const expectedResult = {
+            name: "Dawn Earring",
+            durability: 80,
+            enhancement: 17
+        };
+
+        expect(result).toEqual(expectedResult);
     });
 });

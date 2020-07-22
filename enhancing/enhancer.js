@@ -37,5 +37,11 @@ function repair (item) {
 }
 
 function get (item) {
-    return { ...item };
+    const result = Object.assign({}, item);
+
+    if (item.enhancement) {
+        result.name = `${result.name} [+${item.enhancement}]`;
+    }
+
+    return result;
 }

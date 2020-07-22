@@ -54,6 +54,7 @@ describe("Succeed", () => {
     });
 });
 
+
 describe("Fail func", () => {
     test("As expected", () => {
         const item = gameItems[0];
@@ -81,5 +82,18 @@ describe("Fail func", () => {
         };
 
         expect(result).toEqual(expectedResult);
+    });
+});
+
+
+describe("Get func", () => {
+    test("Adds enhancements to name", () => {
+        const item = gameItems[4];
+
+        const result = enhancer.get(item);
+        const expectedName = "Dawn Earring [+18]";
+
+        expect(result.name).toBe(expectedName);
+
     });
 });

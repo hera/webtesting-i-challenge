@@ -1,22 +1,47 @@
 module.exports = {
-  succeed,
-  fail,
-  repair,
-  get,
+    succeed,
+    fail,
+    repair,
+    get,
 };
 
-function succeed(item) {
-  return { ...item };
+
+function succeed (item) {
+    const result = Object.assign({}, item);
+
+    if (result.enhancement < 20) {
+        result.enhancement++;
+    }
+
+    return result;
 }
 
-function fail(item) {
-  return { ...item };
+function fail (item) {
+    const result = Object.assign({}, item);
+
+    if (item.enhancement < 15) {
+        result.durability -= 5;
+    } else if (item.enhancement >= 15) {
+        result.durability -= 10;
+    }
+
+    if (item.enhancement > 16) {
+        result.enhancement = result.enhancement - 1;
+    }
+
+    return result;
 }
 
-function repair(item) {
-  return { ...item };
+function repair (item) {
+    return Object.assign(item, { durability: 100 });
 }
 
-function get(item) {
-  return { ...item };
+function get (item) {
+    const result = Object.assign({}, item);
+
+    if (item.enhancement) {
+        result.name = `${result.name} [+${item.enhancement}]`;
+    }
+
+    return result;
 }
